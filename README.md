@@ -11,13 +11,15 @@ Sin embargo, ahora se requiere construir un nuevo juego Snake donde existen nuev
      Comida Tipo 2: al comerlo, este se añade en la posición indicada por su número. 
      Comida Tipo 3: al comerlo, se agrega a la cabeza 
      Comida Tipo 4: esta comida se mueve por pantalla en forma aleatoria 
-     Comida Tipo 5: Cierta comida solo se puede comer si la snake encierra dicha comida haciendo tocar su cabeza con el último elemento de la cola.
+     Comida Tipo 5: Cierta comida solo se puede comer si la snake encierra dicha comida
+                     haciendo tocar su cabeza con el último elemento de la cola.
+        
+                     En ese momento la snake se invierte, todos los elementos de la lista se invierten, es decir, comienza a girar en sentido contrario y recibe bonificación de puntaje. 
 
-En ese momento la snake se invierte, todos los elementos de la lista se invierten, es decir, 
-comienza a girar en sentido contrario y recibe bonificación de puntaje. 
-
-     Comida Tipo 6: Existen al menos, 3 pares de comida que se pueden comer en forma pareada y dan bonificación de 
-                     puntaje. Entre más compleja sean enlazados los pares, mayor es la bonificación de puntaje. Por ejemplo, si estos tres pares se simbolizan por {}, [], (), entonces la comida en secuencia {[({}[]())]}* tiene mayor puntaje cuando se obtiene el ultimo par (se cierra el último paréntesis y luego se come un * que indica el final). Si la comida de este tipo no se come en secuencia correcta, entonces se realiza un descuento del puntaje. 
+     Comida Tipo 6: Existen al menos, 3 pares de comida que se pueden comer en forma pareada y
+                     dan bonificación de puntaje. Entre más compleja sean enlazados los pares, mayor es la bonificación de puntaje. Por ejemplo, si estos tres pares se simbolizan por {}, [], (), entonces la comida en secuencia {[({}[]())]}* tiene mayor puntaje cuando se obtiene el ultimo par (se cierra el último paréntesis y luego se come un * que indica el final).
+                     
+                     Si la comida de este tipo no se come en secuencia correcta, entonces se realiza un descuento del puntaje. 
     
      Usted debe decidir la forma de otorgar el puntaje, pero debe respetar el funcionamiento de comida Tipo 5 y 6. 
      Usted decide la forma gráfica y sonora del juego. 
