@@ -1,3 +1,8 @@
+# Activar venv
+
+source venv/bin/activate
+
+
 # ProyectoAlgoritmos
 Proyecto de algoritmos del segundo semestre del año 2022
 PROYECTO JUEGO SNAKE 

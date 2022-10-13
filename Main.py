@@ -1,9 +1,12 @@
-#Test 
+#Test
 
 
 
 ###########################################################################################
 # importamos los demas objetos.
+
+import sys
+import pygame
 
 
 
