@@ -1,9 +1,27 @@
 import sys
 import pygame
 import random
+from PIL import Image, ImageSequence
 
-from constantes import *
+from Constantes import *
 from Listas import *
+
+#convierte una imagen tipo PIL a surface de pygame
+def pil2surface(pil_img):
+    mode, size, data = pil_img.mode, pil_img.size, pil_img.tobytes()
+    return pygame.image.fromstring(data, size, mode).convert_alpha()
+
+#carga una gif animado como una lista de imagenes pygame
+def load_gif(filename):
+    pil_img = Image.open(filename)
+    sprites = []
+    if pil_img.format == 'GIF' and pil_img.is_animated:
+        for sp in ImageSequence.Iterator(pil_img):
+            py_img = pil2surface(sp.convert('RGBA'))
+            sprites.append(py_img)
+    else:
+         sprites.append(pil2surface(pil_img))
+    return  sprites
 
 class Snake:
     def __init__(self):
@@ -60,17 +78,42 @@ class Food:
         self.position = (0, 0)
         #random color
         self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        self.text = random.choice([" ( ", " ) ", " [ ", " ] ", " { ", " } "])
         self.randomize_position()
+
     def randomize_position(self):
+
         self.position = (random.randint(0, GRID_WIDTH - 1) * GRIDSIZE, random.randint(0, GRID_HEIGHT - 1) * GRIDSIZE)
         # Cambiar el color de la comida
         self.color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        # Cambiar el texto de la comida
+        self.text = random.choice([" ( ", " ) ", " [ ", " ] ", " { ", " } "])
+
+
+    # agregar mas de una comida al tablero en distintas ibicaciones
+    def draw_more1(self, surface):
+        for i in range(2):
+            r = pygame.Rect((self.position[0], self.position[1]), (GRIDSIZE, GRIDSIZE))
+            pygame.draw.rect(surface, self.color, r)
+            pygame.draw.rect(surface, (100, 100, 0), r, 1)
+            # Agregar texto a la comida
+            font = pygame.font.SysFont('Arial', 25)
+            text = font.render(self.text, True, (0, 0, 0))
+            surface.blit(text, (self.position[0], self.position[1]))
+            self.randomize_position()
+
 
     def draw(self, surface):
+
 
         r = pygame.Rect((self.position[0], self.position[1]), (GRIDSIZE, GRIDSIZE))
         pygame.draw.rect(surface, self.color, r)
         pygame.draw.rect(surface, (100, 100, 0), r, 1)
+        # Agregar texto a la comida
+        font = pygame.font.SysFont('Arial', 25)
+        text = font.render(self.text, True, (0, 0, 0))
+        surface.blit(text, (self.position[0], self.position[1]))
+
 
 def drawGrid(surface):
     for y in range(0, int(GRID_HEIGHT)):
@@ -94,20 +137,27 @@ def main():
 
     snake = Snake()
     food = Food()
+    snake.length.Push(1)
 
     myfont = pygame.font.SysFont("monospace", 30, bold=True, italic=True)
 
     while (True):
-        clock.tick(7)
+        clock.tick(6)
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
+
         if snake.get_head_position() == food.position:
+            # Agregar mas de una comida
             snake.length.Push(1)
+            print(snake.length.getLargo())
             snake.score += 1
-            food.randomize_position()
+            food.draw_more1(surface)
+
+            # Aqui van las condicionales respecto de la comida que coma
+            #if comida == 1:
+
         snake.draw(surface)
-        # Cada comida es diferente a la otra donde cada color es distinto no cambia hasta cambiar su ubicacion
         food.draw(surface)
 
 
@@ -119,3 +169,5 @@ def main():
 if __name__ == '__main__':
     #Main
     main()
+
+    
