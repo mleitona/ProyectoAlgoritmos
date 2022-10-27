@@ -28,7 +28,16 @@ class PilaLIFO:
             self.head = nuevoNodo
 
     # Metodo para eliminar el ultimo nodo que ingreso a la pila
-
+    def mostrarlista(self):
+        
+        puntero = self.head
+        siguiente = puntero.next
+        while siguiente != None:
+            print(puntero)
+            
+            puntero = siguiente
+            siguiente = puntero.next
+            
     def Pop(self):
         # Si la lista esta vacia no se puede eliminar el ultimo nodo
         if self.head is None:
@@ -64,6 +73,20 @@ class ListaDoblementeEnlazada:
     def __init__(self):
         self.head = None
 
+    
+    def mostrarlista(self):
+        
+        puntero = self.head
+        siguiente = puntero.next
+        while siguiente != None:
+            print(puntero)
+            
+            puntero = siguiente
+            siguiente = puntero.next
+              
+                
+        
+        
     # Metodo para insertar un nodo al inicio de la lista
 
     def insertarInicio(self, elemento):

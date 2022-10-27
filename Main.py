@@ -23,7 +23,7 @@ def load_gif(filename):
          sprites.append(pil2surface(pil_img))
     return  sprites
 
-class Snake:
+class Snake:    # Gusano 
     def __init__(self):
         self.length = PilaLIFO()
         self.positions = [((WIDTH / 2), (HEIGHT / 2))]
@@ -38,28 +38,42 @@ class Snake:
             return
         else:
             self.direction = point
-    def move(self):
+            
+            
+    def move(self):  # Se mueve constantemente el gusano
+        
         cur = self.get_head_position()
         x, y = self.direction
         new = (((cur[0] + (x * GRIDSIZE)) % WIDTH), (cur[1] + (y * GRIDSIZE)) % HEIGHT)
         if len(self.positions) > 2 and new in self.positions[2:]:
+            print("Choco el gusano")
+            
             self.reset()
         else:
+         
             self.positions.insert(0, new)
             if len(self.positions) > self.length.getLargo():
                 self.positions.pop()
+   
+   
+   
     def reset(self):
         self.length = 1
         self.positions = [((WIDTH / 2), (HEIGHT / 2))]
         self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
         self.score = 0
     def draw(self, surface):
+        
         for p in self.positions:
+            
             r = pygame.Rect((p[0], p[1]), (GRIDSIZE, GRIDSIZE))
             pygame.draw.rect(surface, self.color, r)
             pygame.draw.rect(surface, (100, 100, 0), r, 1)
     def handle_keys(self):
-        for event in pygame.event.get():
+        
+ 
+        for event in pygame.event.get():  # ford que mueve los controles
+            
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
@@ -72,6 +86,11 @@ class Snake:
                     self.turn(LEFT)
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
+
+
+
+
+
 
 class Food:
     def __init__(self):
@@ -104,6 +123,7 @@ class Food:
 
 
     def draw(self, surface):
+    
 
 
         r = pygame.Rect((self.position[0], self.position[1]), (GRIDSIZE, GRIDSIZE))
@@ -140,14 +160,16 @@ def main():
     snake.length.Push(1)
 
     myfont = pygame.font.SysFont("monospace", 30, bold=True, italic=True)
-
+    print("Ocurre 1 vez")
     while (True):
         clock.tick(6)
         snake.handle_keys()
         drawGrid(surface)
         snake.move()
 
-        if snake.get_head_position() == food.position:
+        if snake.get_head_position() == food.position:    # el gusano se come la comida 
+            print("Se comio uno xd")
+            
             # Agregar mas de una comida
             snake.length.Push(1)
             print(snake.length.getLargo())
@@ -166,8 +188,8 @@ def main():
         screen.blit(text, (5, 10))
         pygame.display.update()
 
-if __name__ == '__main__':
-    #Main
-    main()
+# if __name__ == '__main__':
+#     #Main
+main()
 
     
