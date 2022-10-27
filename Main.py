@@ -2,7 +2,7 @@ import sys
 import pygame
 import random
 from PIL import Image, ImageSequence
-import Snake
+from Snake import *
 
 from Constantes import *
 from Listas import *
@@ -93,7 +93,7 @@ def main():
 
     snake = Snake()
     food = Food()
-    snake.length.Push(1)
+    snake.length.insertarInicio(1)
 
     myfont = pygame.font.SysFont("monospace", 30, bold=True, italic=True)
     print("Ocurre 1 vez")
@@ -107,7 +107,7 @@ def main():
             print("Se comio uno xd")
             
             # Agregar mas de una comida
-            snake.length.Push(1)
+            snake.length.insertarInicio(1)
             print(snake.length.getLargo())
             snake.score += 1
             food.draw_more1(surface)

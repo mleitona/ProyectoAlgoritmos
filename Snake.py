@@ -9,7 +9,7 @@ from Listas import *
 
 class Snake:    # Gusano 
     def __init__(self):
-        self.length = PilaLIFO()
+        self.length = ListaDoblementeEnlazada()
         self.positions = [((WIDTH / 2), (HEIGHT / 2))]
         self.direction = random.choice([UP, DOWN, LEFT, RIGHT])
         self.color = (20, 20, 0)
@@ -17,12 +17,12 @@ class Snake:    # Gusano
 
     def get_head_position(self):
         return self.positions[0]
+
     def turn(self, point):
         if self.length.getLargo() > 1 and (point[0] * -1, point[1] * -1) == self.direction:
             return
         else:
             self.direction = point
-            
             
     def move(self):  # Se mueve constantemente el gusano
         
@@ -39,8 +39,6 @@ class Snake:    # Gusano
             if len(self.positions) > self.length.getLargo():
                 self.positions.pop()
    
-   
-   
     def reset(self):
         self.length = 1
         self.positions = [((WIDTH / 2), (HEIGHT / 2))]
@@ -53,9 +51,8 @@ class Snake:    # Gusano
             r = pygame.Rect((p[0], p[1]), (GRIDSIZE, GRIDSIZE))
             pygame.draw.rect(surface, self.color, r)
             pygame.draw.rect(surface, (100, 100, 0), r, 1)
+
     def handle_keys(self):
-        
- 
         for event in pygame.event.get():  # ford que mueve los controles
             
             if event.type == pygame.QUIT:
