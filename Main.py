@@ -3,7 +3,7 @@ import pygame
 import random
 from PIL import Image, ImageSequence
 from Snake import *
-
+from ComidasT import *
 from Constantes import *
 from Listas import *
 

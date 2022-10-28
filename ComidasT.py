@@ -18,6 +18,8 @@
     
 ################################################################################################################################
 import random
+import pygame
+
 class Comidas():
 
     def __init__(self,puntos,TipodeComida):
@@ -42,8 +44,26 @@ class Comidas():
         #Se agrega el contenido al tipo de comida 3, sera representado por TP3
         self.Contenido = 'TP3'
         return self.Contenido
-    def Comida_T_4(self):
-        pass
+
+    def Comida_T_4(self, surface, serpiente): # Este código es más o menos el comportamiento que debiese tener la comida tipo 4
+        # Velocidad Comida
+        comida_velocidad_x = 5
+        comida_velocidad_y = 5
+        # Coordenadas Comida
+        comida_coordX = random.randint(0, 600)
+        comida_coordY = random.randint(0, 600)
+        while(True):
+            comida4 = pygame.draw.rect(surface, (255, 0, 128), (comida_coordX, comida_coordY), (20, 20)) # GRIDSIZE = 20
+            if(comida_coordX > 600 or comida_coordX < 0):
+                comida_velocidad_x = comida_velocidad_x * -1
+    
+            if(comida_coordY > 600 or comida_coordY < 0):
+                comida_velocidad_y = comida_velocidad_y * -1
+            
+            if(comida4.collidedict(serpiente)):
+                self.contenido = 'TP4'
+                return self.contenido
+
     def Comida_T_5(self):
         pass
     def Comida_T_6(self):
