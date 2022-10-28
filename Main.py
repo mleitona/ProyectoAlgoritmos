@@ -81,6 +81,7 @@ def drawGrid(surface):
                 rr = pygame.Rect((x * GRIDSIZE, y * GRIDSIZE), (GRIDSIZE, GRIDSIZE))
                 pygame.draw.rect(surface, (150, 190, 0), rr)
 def main():
+    print("Inicia")
     pygame.init()
     # Titulo
     pygame.display.set_caption("SNAKE GAME")
@@ -125,7 +126,7 @@ def main():
         pygame.display.update()
 
 # if __name__ == '__main__':
-#     #Main
+#     Main
 main()
 
     

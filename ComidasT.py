@@ -17,24 +17,31 @@
     
     
 ################################################################################################################################
-
+import random
 class Comidas():
 
-    def __init__(self):
-        self.puntos = None
-        self.tipo_comida = None
+    def __init__(self,puntos,TipodeComida):
+        self.puntos = puntos
+        self.tipo_comida = TipodeComida
+        self.Contenido = None
 
     def GetT_comida(self):
         return self.tipo_comida
     def GetPuntos(self):
         return self.puntos
     def Comida_T_1(self):
-        # al ser comida se agrega a la cola
-        pass
-    def Comida_T_2(self):
-        pass
+        #Se agrega el contenido al tipo de comida 1, sera representado por TP1
+        self.Contenido = 'TP1'
+        return self.Contenido
+    
+    def Comida_T_2(self,LargoSnake):
+        #Se agrega el contenido al tipo de comida 2, sera representado por un valor numerico aleatorio con limite del largo del gusano 
+        self.Contenido = random(0,LargoSnake)
+        return self.Contenido
     def Comida_T_3(self):
-        pass
+        #Se agrega el contenido al tipo de comida 3, sera representado por TP3
+        self.Contenido = 'TP3'
+        return self.Contenido
     def Comida_T_4(self):
         pass
     def Comida_T_5(self):

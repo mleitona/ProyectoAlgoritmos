@@ -70,7 +70,8 @@ class Snake:    # Gusano
                     self.turn(LEFT)
                 elif event.key == pygame.K_RIGHT:
                     self.turn(RIGHT)
-    def InsertaComida1():
+    def InsertaComida1(Comida):
+        
         return 0
     def InsertaComida2():
         return 0
