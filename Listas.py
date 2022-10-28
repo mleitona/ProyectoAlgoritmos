@@ -73,7 +73,14 @@ class ListaDoblementeEnlazada:
     def __init__(self):
         self.head = None
 
-    
+    def getLargo(self):
+        temp = self.head
+        largo = 0
+        while temp is not None:
+            largo += 1
+            temp = temp.next
+        return largo
+
     def mostrarlista(self):
         
         puntero = self.head
